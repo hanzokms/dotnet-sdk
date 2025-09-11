@@ -23,7 +23,7 @@ public class Subscribers
       var response = await _apiClient.GetAsync<CertificateBundle>(
         $"/api/v1/pki/subscribers/{options.SubscriberName}/latest-certificate-bundle",
         dict
-      );
+      ).ConfigureAwait(false);
 
       return response;
     }
@@ -39,7 +39,7 @@ public class Subscribers
     {
       options.Validate();
 
-      var response = await _apiClient.PostAsync<IssueCertificateOptions, SubscriberIssuedCertificate>($"/api/v1/pki/subscribers/{options.SubscriberName}/issue-certificate", options, true);
+      var response = await _apiClient.PostAsync<IssueCertificateOptions, SubscriberIssuedCertificate>($"/api/v1/pki/subscribers/{options.SubscriberName}/issue-certificate", options, true).ConfigureAwait(false);
 
       return response;
     }
