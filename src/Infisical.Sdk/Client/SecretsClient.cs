@@ -25,7 +25,7 @@ public class SecretsClient
         dict["tagSlugs"] = string.Join(",", options.TagSlugs);
       }
 
-      var response = await _apiClient.GetAsync<ListSecretsResponse>("/api/v3/secrets/raw", dict);
+      var response = await _apiClient.GetAsync<ListSecretsResponse>("/api/v3/secrets/raw", dict).ConfigureAwait(false);
 
 
       List<Secret> secrets = response.Secrets.ToList();
@@ -92,7 +92,7 @@ public class SecretsClient
 
       var dict = ObjectToDictionaryConverter.ToDictionary(options, false);
 
-      var response = await _apiClient.GetAsync<GetSecretResponse>($"/api/v3/secrets/raw/{options.SecretName}", dict);
+      var response = await _apiClient.GetAsync<GetSecretResponse>($"/api/v3/secrets/raw/{options.SecretName}", dict).ConfigureAwait(false);
 
       if (string.IsNullOrEmpty(response.Secret.SecretPath))
       {
@@ -114,7 +114,7 @@ public class SecretsClient
 
       options.Validate();
 
-      var response = await _apiClient.PostAsync<CreateSecretOptions, CreateSecretResponse>($"/api/v3/secrets/raw/{options.SecretName}", options, true);
+      var response = await _apiClient.PostAsync<CreateSecretOptions, CreateSecretResponse>($"/api/v3/secrets/raw/{options.SecretName}", options, true).ConfigureAwait(false);
       return response.Secret;
     }
     catch (Exception e)
@@ -129,7 +129,7 @@ public class SecretsClient
     {
       options.Validate();
 
-      var response = await _apiClient.PatchAsync<UpdateSecretOptions, UpdateSecretResponse>($"/api/v3/secrets/raw/{options.SecretName}", options, true);
+      var response = await _apiClient.PatchAsync<UpdateSecretOptions, UpdateSecretResponse>($"/api/v3/secrets/raw/{options.SecretName}", options, true).ConfigureAwait(false);
 
       return response.Secret;
     }
@@ -144,7 +144,7 @@ public class SecretsClient
     try
     {
       options.Validate();
-      var response = await _apiClient.DeleteAsync<DeleteSecretOptions, DeleteSecretResponse>($"/api/v3/secrets/raw/{options.SecretName}", options, true);
+      var response = await _apiClient.DeleteAsync<DeleteSecretOptions, DeleteSecretResponse>($"/api/v3/secrets/raw/{options.SecretName}", options, true).ConfigureAwait(false);
       return response.Secret;
     }
     catch (Exception e)

@@ -19,7 +19,7 @@ public class UniversalAuth
     {
       var loginRequest = new UniversalAuthLoginRequest(clientId, clientSecret);
 
-      var response = await _apiClient.PostAsync<UniversalAuthLoginRequest, MachineIdentityCredential>("/api/v1/auth/universal-auth/login", loginRequest);
+      var response = await _apiClient.PostAsync<UniversalAuthLoginRequest, MachineIdentityCredential>("/api/v1/auth/universal-auth/login", loginRequest).ConfigureAwait(false);
       _setAccessTokenFunc(response.AccessToken);
       return response;
     }

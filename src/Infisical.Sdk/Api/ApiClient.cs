@@ -78,7 +78,7 @@ namespace Infisical.Sdk.Api
 
       try
       {
-        var content = await response.Content.ReadAsStringAsync();
+        var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
         if (!string.IsNullOrEmpty(content))
         {
           message += $" - {content}";
@@ -111,15 +111,15 @@ namespace Infisical.Sdk.Api
           request.Headers.Add("Authorization", $"Bearer {_accessToken}");
         }
 
-        var response = await _httpClient.SendAsync(request);
+        var response = await _httpClient.SendAsync(request).ConfigureAwait(false);
 
         if (!response.IsSuccessStatusCode)
         {
-          var errorMessage = await FormatErrorMessageAsync(response);
+          var errorMessage = await FormatErrorMessageAsync(response).ConfigureAwait(false);
           throw new HttpRequestException(errorMessage);
         }
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
         if (string.IsNullOrEmpty(responseContent))
         {
@@ -170,16 +170,16 @@ namespace Infisical.Sdk.Api
           {
             request.Headers.Add("Authorization", $"Bearer {_accessToken}");
           }
-          return await _httpClient.SendAsync(request);
-        });
+          return await _httpClient.SendAsync(request).ConfigureAwait(false);
+        }).ConfigureAwait(false);
 
         if (!response.IsSuccessStatusCode)
         {
-          var errorMessage = await FormatErrorMessageAsync(response);
+          var errorMessage = await FormatErrorMessageAsync(response).ConfigureAwait(false);
           throw new HttpRequestException(errorMessage);
         }
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
         if (string.IsNullOrEmpty(responseContent))
         {
@@ -223,15 +223,15 @@ namespace Infisical.Sdk.Api
           request.Headers.Add("Authorization", $"Bearer {_accessToken}");
         }
 
-        var response = await _httpClient.SendAsync(request);
+        var response = await _httpClient.SendAsync(request).ConfigureAwait(false);
 
         if (!response.IsSuccessStatusCode)
         {
-          var errorMessage = await FormatErrorMessageAsync(response);
+          var errorMessage = await FormatErrorMessageAsync(response).ConfigureAwait(false);
           throw new HttpRequestException(errorMessage);
         }
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
         if (string.IsNullOrEmpty(responseContent))
         {
@@ -275,15 +275,15 @@ namespace Infisical.Sdk.Api
           request.Headers.Add("Authorization", $"Bearer {_accessToken}");
         }
 
-        var response = await _httpClient.SendAsync(request);
+        var response = await _httpClient.SendAsync(request).ConfigureAwait(false);
 
         if (!response.IsSuccessStatusCode)
         {
-          var errorMessage = await FormatErrorMessageAsync(response);
+          var errorMessage = await FormatErrorMessageAsync(response).ConfigureAwait(false);
           throw new HttpRequestException(errorMessage);
         }
 
-        var responseContent = await response.Content.ReadAsStringAsync();
+        var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
         if (string.IsNullOrEmpty(responseContent))
         {
