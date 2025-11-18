@@ -16,9 +16,9 @@ internal class Program
   private static void Main(string[] args)
   {
 
-    var machineIdentityClientId = Environment.GetEnvironmentVariable("MACHINE_IDENTITY_UNIVERSAL_AUTH_CLIENT_ID");
-    var machineIdentityClientSecret = Environment.GetEnvironmentVariable("MACHINE_IDENTITY_UNIVERSAL_AUTH_CLIENT_SECRET");
-    var projectId = Environment.GetEnvironmentVariable("MACHINE_IDENTITY_PROJECT_ID");
+    var machineIdentityClientId = Environment.GetEnvironmentVariable("INFISICAL_MACHINE_IDENTITY_CLIENT_ID");
+    var machineIdentityClientSecret = Environment.GetEnvironmentVariable("INFISICAL_MACHINE_IDENTITY_CLIENT_SECRET");
+    var projectId = Environment.GetEnvironmentVariable("INFISICAL_PROJECT_ID");
 
 
     if (string.IsNullOrEmpty(machineIdentityClientId) || string.IsNullOrEmpty(machineIdentityClientSecret) || string.IsNullOrEmpty(projectId))
@@ -47,42 +47,12 @@ internal class Program
 
     Console.WriteLine("Done sleeping");
 
-    var options = new ListSecretsOptions
-    {
-      SetSecretsAsEnvironmentVariables = true,
-      EnvironmentSlug = "dev",
-      SecretPath = "/test",
-      Recursive = true,
-      // ExpandSecretReferences = true,
-      ProjectId = projectId,
-      // ViewSecretValue = true,
-    };
-    Console.WriteLine("\n\n\nList secrets response:");
-    Console.WriteLine(JsonSerializer.Serialize(client.Secrets().ListAsync(options).Result, new JsonSerializerOptions { WriteIndented = true }));
-
-    // exit the program
-    Console.WriteLine("Exiting program");
-    Environment.Exit(0);
-
-
     var envVars = Environment.GetEnvironmentVariables();
     Console.WriteLine("\n\n\nEnvironment variables:");
     foreach (var envVar in envVars)
     {
       Console.WriteLine($"{envVar} {Environment.NewLine}");
     }
-
-
-    var getSecretOptions = new GetSecretOptions
-    {
-      SecretName = "DEV_SEC",
-      EnvironmentSlug = "dev",
-      SecretPath = "/test",
-      ProjectId = projectId,
-    };
-    Console.WriteLine("\n\n\nGet secret response:");
-    Console.WriteLine(JsonSerializer.Serialize(client.Secrets().GetAsync(getSecretOptions).Result, new JsonSerializerOptions { WriteIndented = true }));
-
 
     var newSecretName = $".NET-SDK-TEST-{RandomString(32)}";
 
@@ -98,7 +68,66 @@ internal class Program
     Console.WriteLine("\n\n\nCreate secret response:");
     Console.WriteLine(JsonSerializer.Serialize(client.Secrets().CreateAsync(createSecretOptions).Result, new JsonSerializerOptions { WriteIndented = true }));
 
+    var options = new ListSecretsOptions
+    {
+      SetSecretsAsEnvironmentVariables = true,
+      EnvironmentSlug = "dev",
+      SecretPath = "/test",
+      Recursive = true,
+      // ExpandSecretReferences = true,
+      ProjectId = projectId,
+      // ViewSecretValue = true,
+    };
+    Console.WriteLine("\n\n\nList secrets response:");
+    Console.WriteLine(JsonSerializer.Serialize(client.Secrets().ListAsync(options).Result, new JsonSerializerOptions { WriteIndented = true }));
 
+    var getSecretOptions = new GetSecretOptions
+    {
+      SecretName = newSecretName,
+      EnvironmentSlug = "dev",
+      SecretPath = "/test",
+      ProjectId = projectId,
+    };
+    Console.WriteLine("\n\n\nGet secret response:");
+    Console.WriteLine(JsonSerializer.Serialize(client.Secrets().GetAsync(getSecretOptions).Result, new JsonSerializerOptions { WriteIndented = true }));
+
+
+    // Close the Universal Auth client and create a new one with LDAP Auth
+    Console.WriteLine("\n\n\n=== Switching to LDAP Auth ===");
+    
+    var ldapIdentityId = Environment.GetEnvironmentVariable("LDAP_IDENTITY_ID");
+    var ldapUsername = Environment.GetEnvironmentVariable("LDAP_USERNAME");
+    var ldapPassword = Environment.GetEnvironmentVariable("LDAP_PASSWORD");
+
+    if (string.IsNullOrEmpty(ldapIdentityId) || string.IsNullOrEmpty(ldapUsername) || string.IsNullOrEmpty(ldapPassword))
+    {
+      Console.WriteLine("LDAP_IDENTITY_ID, LDAP_USERNAME, and LDAP_PASSWORD must be set to test LDAP auth");
+      Console.WriteLine("Skipping LDAP auth test and continuing with Universal Auth client...");
+    }
+    else
+    {
+      // Create a new client with LDAP auth
+      var ldapClient = new InfisicalClient(settings);
+      try
+      {
+        Console.WriteLine("Authenticating with LDAP...");
+        var ldapCredential = ldapClient.Auth().LdapAuth().LoginAsync(ldapIdentityId, ldapUsername, ldapPassword).Result;
+        Console.WriteLine($"✅ LDAP Auth successful! Token: {ldapCredential.AccessToken.Substring(0, Math.Min(20, ldapCredential.AccessToken.Length))}...");
+        Console.WriteLine($"   Expires In: {ldapCredential.ExpiresIn} seconds");
+        
+        // Use the LDAP-authenticated client for remaining operations
+        client = ldapClient;
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine($"❌ LDAP Auth failed: {ex.Message}");
+        if (ex.InnerException != null)
+        {
+          Console.WriteLine($"   Inner Exception: {ex.InnerException.Message}");
+        }
+        Console.WriteLine("Continuing with Universal Auth client...");
+      }
+    }
 
     var updateSecretOptions = new UpdateSecretOptions
     {

@@ -56,6 +56,25 @@ public class UniversalAuthLoginRequest
   public string ClientSecret { get; }
 }
 
+public class LdapAuthLoginRequest
+{
+  public LdapAuthLoginRequest(string identityId, string username, string password)
+  {
+    IdentityId = identityId;
+    Username = username;
+    Password = password;
+  }
+
+  [JsonPropertyName("identityId")]
+  public string IdentityId { get; }
+
+  [JsonPropertyName("username")]
+  public string Username { get; }
+
+  [JsonPropertyName("password")]
+  public string Password { get; }
+}
+
 public class ListSecretsOptions
 {
 
