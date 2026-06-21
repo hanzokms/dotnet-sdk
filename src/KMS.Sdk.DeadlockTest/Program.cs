@@ -1,10 +1,10 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Infisical.Sdk;
-using Infisical.Sdk.Model;
+using KMS.Sdk;
+using KMS.Sdk.Model;
 
-namespace Infisical.Sdk.DeadlockTest
+namespace KMS.Sdk.DeadlockTest
 {
     // Custom SynchronizationContext that simulates WinForms behavior
     public class WinFormsSynchronizationContext : SynchronizationContext
@@ -112,7 +112,7 @@ namespace Infisical.Sdk.DeadlockTest
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("=== Infisical SDK Deadlock Demonstration ===\n");
+            Console.WriteLine("=== Hanzo KMS SDK Deadlock Demonstration ===\n");
 
             // Test 1: Normal console app behavior (no deadlock)
             Console.WriteLine("1. Testing in normal console context...");
@@ -141,11 +141,11 @@ namespace Infisical.Sdk.DeadlockTest
         {
             try
             {
-                var settings = new InfisicalSdkSettingsBuilder()
-                    .WithHostUri("https://app.infisical.com")
+                var settings = new KMSSdkSettingsBuilder()
+                    .WithHostUri("https://kms.hanzo.ai")
                     .Build();
 
-                var client = new InfisicalClient(settings);
+                var client = new KMSClient(settings);
 
                 Console.WriteLine("Using .Result in console app (works fine)...");
                 var task = client.Auth().UniversalAuth().LoginAsync("fake-id", "fake-secret");
@@ -185,11 +185,11 @@ namespace Infisical.Sdk.DeadlockTest
                     // Set this thread's synchronization context
                     SynchronizationContext.SetSynchronizationContext(winformsContext);
 
-                    var settings = new InfisicalSdkSettingsBuilder()
-                        .WithHostUri("https://app.infisical.com")
+                    var settings = new KMSSdkSettingsBuilder()
+                        .WithHostUri("https://kms.hanzo.ai")
                         .Build();
 
-                    var client = new InfisicalClient(settings);
+                    var client = new KMSClient(settings);
 
                     Console.WriteLine("Using .Result in WinForms-like context...");
                     Console.WriteLine("⏳ This should demonstrate a deadlock scenario...");
@@ -267,11 +267,11 @@ namespace Infisical.Sdk.DeadlockTest
             {
                 try
                 {
-                    var settings = new InfisicalSdkSettingsBuilder()
-                        .WithHostUri("https://app.infisical.com")
+                    var settings = new KMSSdkSettingsBuilder()
+                        .WithHostUri("https://kms.hanzo.ai")
                         .Build();
 
-                    var client = new InfisicalClient(settings);
+                    var client = new KMSClient(settings);
 
                     Console.WriteLine("Using proper async/await pattern...");
 
@@ -298,11 +298,11 @@ namespace Infisical.Sdk.DeadlockTest
             {
                 try
                 {
-                    var settings = new InfisicalSdkSettingsBuilder()
-                        .WithHostUri("https://app.infisical.com")
+                    var settings = new KMSSdkSettingsBuilder()
+                        .WithHostUri("https://kms.hanzo.ai")
                         .Build();
 
-                    var client = new InfisicalClient(settings);
+                    var client = new KMSClient(settings);
 
                     Console.WriteLine("Using Task.Run workaround...");
 

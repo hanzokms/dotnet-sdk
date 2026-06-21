@@ -4,9 +4,9 @@ VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infisical.Sdk", "src\Infisical.Sdk\Infisical.Sdk.csproj", "{11D60DFD-D444-8870-6C9D-671521F15EC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMS.Sdk", "src\KMS.Sdk\KMS.Sdk.csproj", "{11D60DFD-D444-8870-6C9D-671521F15EC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infisical.Sdk.Test", "src\Infisical.Sdk.Test\Infisical.Sdk.Test.csproj", "{7960FD3E-93A7-EEB6-7968-5A678EDA3C63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMS.Sdk.Test", "src\KMS.Sdk.Test\KMS.Sdk.Test.csproj", "{7960FD3E-93A7-EEB6-7968-5A678EDA3C63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

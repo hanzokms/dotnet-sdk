@@ -1,8 +1,8 @@
-namespace Infisical.Sdk.Samples;
+namespace KMS.Sdk.Samples;
 
 using System.Text.Json;
-using Infisical.Sdk;
-using Infisical.Sdk.Model;
+using KMS.Sdk;
+using KMS.Sdk.Model;
 
 internal class Program
 {
@@ -16,29 +16,29 @@ internal class Program
   private static void Main(string[] args)
   {
 
-    var machineIdentityClientId = Environment.GetEnvironmentVariable("INFISICAL_MACHINE_IDENTITY_CLIENT_ID");
-    var machineIdentityClientSecret = Environment.GetEnvironmentVariable("INFISICAL_MACHINE_IDENTITY_CLIENT_SECRET");
-    var projectId = Environment.GetEnvironmentVariable("INFISICAL_PROJECT_ID");
+    var machineIdentityClientId = Environment.GetEnvironmentVariable("KMS_MACHINE_IDENTITY_CLIENT_ID");
+    var machineIdentityClientSecret = Environment.GetEnvironmentVariable("KMS_MACHINE_IDENTITY_CLIENT_SECRET");
+    var projectId = Environment.GetEnvironmentVariable("KMS_PROJECT_ID");
 
 
     if (string.IsNullOrEmpty(machineIdentityClientId) || string.IsNullOrEmpty(machineIdentityClientSecret) || string.IsNullOrEmpty(projectId))
     {
 
-      Console.WriteLine("INFISICAL_MACHINE_IDENTITY_CLIENT_ID: " + machineIdentityClientId);
-      Console.WriteLine("INFISICAL_MACHINE_IDENTITY_CLIENT_SECRET: " + machineIdentityClientSecret);
-      Console.WriteLine("INFISICAL_PROJECT_ID: " + projectId);
+      Console.WriteLine("KMS_MACHINE_IDENTITY_CLIENT_ID: " + machineIdentityClientId);
+      Console.WriteLine("KMS_MACHINE_IDENTITY_CLIENT_SECRET: " + machineIdentityClientSecret);
+      Console.WriteLine("KMS_PROJECT_ID: " + projectId);
 
-      Console.WriteLine("INFISICAL_MACHINE_IDENTITY_CLIENT_ID, INFISICAL_MACHINE_IDENTITY_CLIENT_SECRET, and INFISICAL_PROJECT_ID must be set");
+      Console.WriteLine("KMS_MACHINE_IDENTITY_CLIENT_ID, KMS_MACHINE_IDENTITY_CLIENT_SECRET, and KMS_PROJECT_ID must be set");
       return;
     }
 
 
-    var settings = new InfisicalSdkSettingsBuilder()
+    var settings = new KMSSdkSettingsBuilder()
       .WithHostUri("http://localhost:8080")
       .Build();
 
 
-    var client = new InfisicalClient(settings);
+    var client = new KMSClient(settings);
     var _ = client.Auth().UniversalAuth().LoginAsync(machineIdentityClientId, machineIdentityClientSecret).Result;
 
     // sleep for 10 seconds
@@ -107,7 +107,7 @@ internal class Program
     else
     {
       // Create a new client with LDAP auth
-      var ldapClient = new InfisicalClient(settings);
+      var ldapClient = new KMSClient(settings);
       try
       {
         Console.WriteLine("Authenticating with LDAP...");

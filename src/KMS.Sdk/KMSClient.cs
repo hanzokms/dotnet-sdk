@@ -1,17 +1,17 @@
 using System.Threading.Tasks;
-using Infisical.Sdk.Api;
-using Infisical.Sdk.Client;
-using Infisical.Sdk.Model;
+using KMS.Sdk.Api;
+using KMS.Sdk.Client;
+using KMS.Sdk.Model;
 
-namespace Infisical.Sdk
+namespace KMS.Sdk
 {
-  public class InfisicalClient
+  public class KMSClient
   {
     internal ApiClient _apiClient;
     private AuthClient _authClient;
     private SecretsClient _secretsClient;
     private PkiClient _pkiClient;
-    public InfisicalClient(InfisicalSdkSettings settings)
+    public KMSClient(KMSSdkSettings settings)
     {
       _apiClient = new ApiClient(settings.HostUri);
       _secretsClient = new SecretsClient(_apiClient);

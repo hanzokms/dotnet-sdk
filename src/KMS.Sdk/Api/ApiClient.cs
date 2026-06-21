@@ -6,12 +6,12 @@ using System.Web;
 using Polly;
 using Polly.Extensions.Http;
 
-namespace Infisical.Sdk.Api
+namespace KMS.Sdk.Api
 {
-  public class InfisicalException : Exception
+  public class KMSException : Exception
   {
-    public InfisicalException(string message) : base(message) { }
-    public InfisicalException(string message, Exception innerException) : base(message, innerException) { }
+    public KMSException(string message) : base(message) { }
+    public KMSException(string message, Exception innerException) : base(message, innerException) { }
   }
 
   public class ApiClient : IDisposable
@@ -133,14 +133,14 @@ namespace Infisical.Sdk.Api
 
         if (result == null)
         {
-          throw new InfisicalException("Failed to deserialize response content");
+          throw new KMSException("Failed to deserialize response content");
         }
 
         return result;
       }
-      catch (Exception ex) when (!(ex is InfisicalException))
+      catch (Exception ex) when (!(ex is KMSException))
       {
-        throw new InfisicalException($"Error during POST request: {ex.Message}", ex);
+        throw new KMSException($"Error during POST request: {ex.Message}", ex);
       }
     }
 
@@ -193,14 +193,14 @@ namespace Infisical.Sdk.Api
 
         if (result == null)
         {
-          throw new InfisicalException("Failed to deserialize response content");
+          throw new KMSException("Failed to deserialize response content");
         }
 
         return result;
       }
-      catch (Exception ex) when (!(ex is InfisicalException))
+      catch (Exception ex) when (!(ex is KMSException))
       {
-        throw new InfisicalException($"Error during GET request: {ex.Message}", ex);
+        throw new KMSException($"Error during GET request: {ex.Message}", ex);
       }
     }
 
@@ -245,14 +245,14 @@ namespace Infisical.Sdk.Api
 
         if (result == null)
         {
-          throw new InfisicalException("Failed to deserialize response content");
+          throw new KMSException("Failed to deserialize response content");
         }
 
         return result;
       }
-      catch (Exception ex) when (!(ex is InfisicalException))
+      catch (Exception ex) when (!(ex is KMSException))
       {
-        throw new InfisicalException($"Error during PATCH request: {ex.Message}", ex);
+        throw new KMSException($"Error during PATCH request: {ex.Message}", ex);
       }
     }
 
@@ -297,14 +297,14 @@ namespace Infisical.Sdk.Api
 
         if (result == null)
         {
-          throw new InfisicalException("Failed to deserialize response content");
+          throw new KMSException("Failed to deserialize response content");
         }
 
         return result;
       }
-      catch (Exception ex) when (!(ex is InfisicalException))
+      catch (Exception ex) when (!(ex is KMSException))
       {
-        throw new InfisicalException($"Error during DELETE request: {ex.Message}", ex);
+        throw new KMSException($"Error during DELETE request: {ex.Message}", ex);
       }
     }
 

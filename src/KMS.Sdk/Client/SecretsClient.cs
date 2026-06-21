@@ -1,7 +1,7 @@
-using Infisical.Sdk.Api;
-using Infisical.Sdk.Util;
+using KMS.Sdk.Api;
+using KMS.Sdk.Util;
 
-namespace Infisical.Sdk.Client;
+namespace KMS.Sdk.Client;
 
 public class SecretsClient
 {
@@ -79,7 +79,7 @@ public class SecretsClient
     }
     catch (Exception e)
     {
-      throw new InfisicalException("Failed to list secrets", e);
+      throw new KMSException("Failed to list secrets", e);
     }
   }
 
@@ -103,7 +103,7 @@ public class SecretsClient
     }
     catch (Exception e)
     {
-      throw new InfisicalException("Failed to get secret", e);
+      throw new KMSException("Failed to get secret", e);
     }
   }
 
@@ -119,7 +119,7 @@ public class SecretsClient
     }
     catch (Exception e)
     {
-      throw new InfisicalException("Failed to create secret", e);
+      throw new KMSException("Failed to create secret", e);
     }
   }
 
@@ -135,7 +135,7 @@ public class SecretsClient
     }
     catch (Exception e)
     {
-      throw new InfisicalException("Failed to update secret", e);
+      throw new KMSException("Failed to update secret", e);
     }
   }
 
@@ -149,7 +149,7 @@ public class SecretsClient
     }
     catch (Exception e)
     {
-      throw new InfisicalException("Failed to delete secret", e);
+      throw new KMSException("Failed to delete secret", e);
     }
   }
 

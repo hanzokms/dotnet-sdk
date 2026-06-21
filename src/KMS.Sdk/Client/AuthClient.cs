@@ -1,7 +1,7 @@
-using Infisical.Sdk.Api;
-using Infisical.Sdk.Model;
+using KMS.Sdk.Api;
+using KMS.Sdk.Model;
 
-namespace Infisical.Sdk.Client;
+namespace KMS.Sdk.Client;
 
 
 public class UniversalAuth
@@ -25,7 +25,7 @@ public class UniversalAuth
     }
     catch (Exception e)
     {
-      throw new InfisicalException("Failed to login", e);
+      throw new KMSException("Failed to login", e);
     }
   }
 
@@ -54,7 +54,7 @@ public class LdapAuth
     }
     catch (Exception e)
     {
-      throw new InfisicalException("Failed to login", e);
+      throw new KMSException("Failed to login", e);
     }
   }
 

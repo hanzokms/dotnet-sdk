@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using Infisical.Sdk;
+using KMS.Sdk;
 
 
 // note(daniel): Polyfill that allows for the init keyword to be used in the model classes. This is not great, I am aware.
@@ -102,17 +102,17 @@ public class ListSecretsOptions
 
     if (string.IsNullOrEmpty(ProjectId))
     {
-      throw new InfisicalException("ProjectId is required");
+      throw new KMSException("ProjectId is required");
     }
 
     if (string.IsNullOrEmpty(EnvironmentSlug))
     {
-      throw new InfisicalException("EnvironmentSlug is required");
+      throw new KMSException("EnvironmentSlug is required");
     }
 
     if (string.IsNullOrEmpty(SecretPath))
     {
-      throw new InfisicalException("SecretPath is required");
+      throw new KMSException("SecretPath is required");
     }
   }
 }
@@ -150,22 +150,22 @@ public class GetSecretOptions
   {
     if (string.IsNullOrEmpty(ProjectId))
     {
-      throw new InfisicalException("ProjectId is required");
+      throw new KMSException("ProjectId is required");
     }
 
     if (string.IsNullOrEmpty(EnvironmentSlug))
     {
-      throw new InfisicalException("EnvironmentSlug is required");
+      throw new KMSException("EnvironmentSlug is required");
     }
 
     if (string.IsNullOrEmpty(SecretPath))
     {
-      throw new InfisicalException("SecretPath is required");
+      throw new KMSException("SecretPath is required");
     }
 
     if (string.IsNullOrEmpty(SecretName))
     {
-      throw new InfisicalException("SecretName is required");
+      throw new KMSException("SecretName is required");
     }
   }
 }
@@ -209,27 +209,27 @@ public class CreateSecretOptions
   {
     if (string.IsNullOrEmpty(ProjectId))
     {
-      throw new InfisicalException("ProjectId is required");
+      throw new KMSException("ProjectId is required");
     }
 
     if (string.IsNullOrEmpty(EnvironmentSlug))
     {
-      throw new InfisicalException("EnvironmentSlug is required");
+      throw new KMSException("EnvironmentSlug is required");
     }
 
     if (string.IsNullOrEmpty(SecretName))
     {
-      throw new InfisicalException("SecretName is required");
+      throw new KMSException("SecretName is required");
     }
 
     if (string.IsNullOrEmpty(SecretValue))
     {
-      throw new InfisicalException("SecretValue is required");
+      throw new KMSException("SecretValue is required");
     }
 
     if (string.IsNullOrEmpty(SecretPath))
     {
-      throw new InfisicalException("SecretPath is required");
+      throw new KMSException("SecretPath is required");
     }
   }
 }
@@ -276,22 +276,22 @@ public class UpdateSecretOptions
   {
     if (string.IsNullOrEmpty(ProjectId))
     {
-      throw new InfisicalException("ProjectId is required");
+      throw new KMSException("ProjectId is required");
     }
 
     if (string.IsNullOrEmpty(SecretName))
     {
-      throw new InfisicalException("SecretName is required");
+      throw new KMSException("SecretName is required");
     }
 
     if (string.IsNullOrEmpty(SecretPath))
     {
-      throw new InfisicalException("SecretPath is required");
+      throw new KMSException("SecretPath is required");
     }
 
     if (string.IsNullOrEmpty(EnvironmentSlug))
     {
-      throw new InfisicalException("EnvironmentSlug is required");
+      throw new KMSException("EnvironmentSlug is required");
     }
   }
 }
@@ -314,22 +314,22 @@ public class DeleteSecretOptions
   {
     if (string.IsNullOrEmpty(ProjectId))
     {
-      throw new InfisicalException("ProjectId is required");
+      throw new KMSException("ProjectId is required");
     }
 
     if (string.IsNullOrEmpty(SecretName))
     {
-      throw new InfisicalException("SecretName is required");
+      throw new KMSException("SecretName is required");
     }
 
     if (string.IsNullOrEmpty(SecretPath))
     {
-      throw new InfisicalException("SecretPath is required");
+      throw new KMSException("SecretPath is required");
     }
 
     if (string.IsNullOrEmpty(EnvironmentSlug))
     {
-      throw new InfisicalException("EnvironmentSlug is required");
+      throw new KMSException("EnvironmentSlug is required");
     }
 
   }
@@ -348,12 +348,12 @@ public class IssueCertificateOptions
   {
     if (string.IsNullOrEmpty(SubscriberName))
     {
-      throw new InfisicalException("SubscriberName is required");
+      throw new KMSException("SubscriberName is required");
     }
 
     if (string.IsNullOrEmpty(ProjectId))
     {
-      throw new InfisicalException("ProjectId is required");
+      throw new KMSException("ProjectId is required");
     }
   }
 }
@@ -388,12 +388,12 @@ public class RetrieveLatestCertificateBundleOptions
   {
     if (string.IsNullOrEmpty(SubscriberName))
     {
-      throw new InfisicalException("SubscriberName is required");
+      throw new KMSException("SubscriberName is required");
     }
 
     if (string.IsNullOrEmpty(ProjectId))
     {
-      throw new InfisicalException("ProjectId is required");
+      throw new KMSException("ProjectId is required");
     }
   }
 }

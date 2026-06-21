@@ -1,7 +1,7 @@
 using System.Reflection;
 using System.Text.Json.Serialization;
 
-namespace Infisical.Sdk.Util
+namespace KMS.Sdk.Util
 {
 
 

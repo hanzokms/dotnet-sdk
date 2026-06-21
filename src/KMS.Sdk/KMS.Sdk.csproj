@@ -4,23 +4,23 @@
     <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net7.0;net8.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>Infisical.Sdk</RootNamespace>
+    <RootNamespace>KMS.Sdk</RootNamespace>
     <LangVersion>10.0</LangVersion>
 
 
-    <Title>Infisical SDK</Title>
-    <Authors>Infisical</Authors>
-    <Description>.NET SDK for Infisical</Description>
-    <Copyright>Infisical</Copyright>
+    <Title>Hanzo KMS SDK</Title>
+    <Authors>Hanzo AI, Inc.</Authors>
+    <Description>.NET SDK for Hanzo KMS</Description>
+    <Copyright>Hanzo AI, Inc.</Copyright>
     <Product>SDK</Product>
 
-    <RepositoryUrl>https://github.com/infisical/infisical-dotnet-sdk</RepositoryUrl>
+    <RepositoryUrl>https://github.com/hanzokms/dotnet-sdk</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
 
-    <PackageProjectUrl>https://infisical.com</PackageProjectUrl>
-    <PackageId>Infisical.Sdk</PackageId>
-    <PackageIcon>infisical.png</PackageIcon>
-    <PackageTags>Infisical;Sdk;.NET</PackageTags>
+    <PackageProjectUrl>https://kms.hanzo.ai</PackageProjectUrl>
+    <PackageId>KMS.Sdk</PackageId>
+    <PackageIcon>kms.png</PackageIcon>
+    <PackageTags>Hanzo KMS;Sdk;.NET</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
@@ -28,7 +28,7 @@
   <ItemGroup>
     <PackageReference Include="Polly.Extensions.Http" Version="3.0.0" />
     <PackageReference Include="System.Text.Json" Version="8.0.5" />
-    <None Include="infisical.png" Pack="true" PackagePath="\" />
+    <None Include="kms.png" Pack="true" PackagePath="\" />
     <None Include="../../README.md" Pack="true" PackagePath="\" />
     <None Include="../../LICENSE" Pack="true" PackagePath="\" />
   </ItemGroup>

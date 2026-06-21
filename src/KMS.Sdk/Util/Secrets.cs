@@ -1,6 +1,6 @@
 
 
-namespace Infisical.Sdk.Util
+namespace KMS.Sdk.Util
 {
 
   public static class SecretsUtil

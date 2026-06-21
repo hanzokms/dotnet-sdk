@@ -1,8 +1,8 @@
-using Infisical.Sdk.Api;
-using Infisical.Sdk.Util;
+using KMS.Sdk.Api;
+using KMS.Sdk.Util;
 
 
-namespace Infisical.Sdk.Client;
+namespace KMS.Sdk.Client;
 
 
 public class Subscribers
@@ -29,7 +29,7 @@ public class Subscribers
     }
     catch (Exception e)
     {
-      throw new InfisicalException("Failed to retrieve latest certificate bundle", e);
+      throw new KMSException("Failed to retrieve latest certificate bundle", e);
     }
   }
 
@@ -45,7 +45,7 @@ public class Subscribers
     }
     catch (Exception e)
     {
-      throw new InfisicalException("Failed to issue certificate", e);
+      throw new KMSException("Failed to issue certificate", e);
     }
   }
 
